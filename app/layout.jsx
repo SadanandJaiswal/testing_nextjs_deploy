@@ -3,9 +3,11 @@ import "@styles/globals.css";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 
+import { ToastContainer } from "react-toastify";
+
 export const metadata = {
-  title: "Promptopia",
-  description: "Discover & Share AI Prompts",
+  title: "Quiz App",
+  description: "Discover & Take Variety of Quizzes",
 };
 
 const RootLayout = ({ children }) => (
@@ -20,6 +22,7 @@ const RootLayout = ({ children }) => (
           <Nav />
           {children}
         </main>
+        <ToastContainer />
       </Provider>
     </body>
   </html>
