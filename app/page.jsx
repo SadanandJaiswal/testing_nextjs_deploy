@@ -4,7 +4,7 @@ import Form from "@components/Form";
 import Profile from "@components/Profile";
 import PromptCard from "@components/PromptCard";
 import CustomModal from "@components/CustomModal";
-import MyGaugeChart from "@components/MyGaugeChart";
+// import MyGaugeChart from "@components/MyGaugeChart";
 import MyModal from "@components/MyModal";
 
 const Home = () => (
@@ -23,7 +23,7 @@ const Home = () => (
               Get Started 4
           </Link>
         </div>
-        <MyGaugeChart correct={6} incorrect={2} unanswered={2}/>
+        {/* <MyGaugeChart correct={6} incorrect={2} unanswered={2}/> */}
       </section>
   </>
 );
