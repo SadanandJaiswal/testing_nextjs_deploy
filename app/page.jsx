@@ -1,4 +1,8 @@
 import Link from "next/link";
+import Feed from "@components/Feed";
+import Form from "@components/Form";
+import Profile from "@components/Profile";
+import PromptCard from "@components/PromptCard";
 
 const Home = () => (
   <>
