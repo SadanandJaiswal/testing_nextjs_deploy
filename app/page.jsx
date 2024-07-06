@@ -20,7 +20,7 @@ const Home = () => (
         </p>
         <div className='mt-8'>
           <Link href='/quizzes' className='px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition duration-300'>  
-              Get Started 4
+              Get Started Checking again 1
           </Link>
         </div>
         {/* <MyGaugeChart correct={6} incorrect={2} unanswered={2}/> */}
