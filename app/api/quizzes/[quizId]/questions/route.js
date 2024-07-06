@@ -1,6 +1,6 @@
 // Import necessary modules and models
 import { connectToDB } from '@utils/database';
-import Quiz from '@models/Quiz'; // Assuming your Quiz model is defined in '@models/Quiz'
+import Quiz from '@models/quiz'; // Assuming your Quiz model is defined in '@models/Quiz'
 import QuizQuestion from '@models/quizQuestion';
 // import { connectToDB } from '../../../../../utils/database';
 // import Quiz from '../../../../../models/Quiz'; // Assuming your Quiz model is defined in '@models/Quiz'

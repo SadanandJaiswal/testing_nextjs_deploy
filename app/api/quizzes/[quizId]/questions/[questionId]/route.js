@@ -1,6 +1,6 @@
 import { connectToDB } from '@utils/database';
 // import { connectToDB } from '../../../../../../utils/database';
-import Quiz from '@models/Quiz'; 
+import Quiz from '@models/quiz'; 
 // import Quiz from '../../../../../../models/Quiz'; 
 import QuizQuestion from '@models/quizQuestion';
 // import QuizQuestion from '../../../../../../models/quizQuestion';
