@@ -1,61 +1,106 @@
 "use client";
 
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useSession } from 'next-auth/react'; // Adjust this based on your auth library
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import QuizListCard from '@components/QuizListCard';
+import CustomModal from '@components/CustomModal';
+import MyModal from '@components/MyModal';
+import MyGaugeChart from '@components/MyGaugeChart';
+import UserProfileDetails from '@components/UserProfileDetails';
 
-import Profile from "@components/Profile";
+const Profile = () => {
+  const { data: session, status} = useSession(); // Retrieve session data
+  const [tests, setTests] = useState([]);
+  const [userDetail, setUserDetail] = useState({})
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const MyProfile = () => {
-  const router = useRouter();
-  const { data: session } = useSession();
+  const [currentTest, setCurrentTest] = useState({});
 
-  const [myPosts, setMyPosts] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/posts`);
-      const data = await response.json();
+    const fetchUserTests = async () => {
+      if (status === 'loading') {
+        // Session data is still being fetched
+        return (<div>Hello Statu is loading</div>);
+      }
 
-      setMyPosts(data);
+      console.log("id is ", session?.user?.id);
+
+      try {
+        const response = await axios.get(`/api/users/${session?.user?.id}/tests/`);
+        setTests(response.data.tests);
+        setUserDetail(response.data.user);
+
+        console.log('user is  here ', response.data.user)
+        console.log('test are here ', response.data.tests)
+        // toast.success("Tests fetched successfully!");
+      } catch (error) {
+        setError(error.message);
+        toast.error(`Error fetching tests: ${error.message}`);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    if (session?.user.id) fetchPosts();
-  }, [session?.user.id]);
+    fetchUserTests();
+  }, [session, status]);
 
-  const handleEdit = (post) => {
-    router.push(`/update-prompt/${post._id}`);
-  };
+  useEffect(()=>{
+    console.log("current test ", currentTest)
+  },[currentTest])
 
-  const handleDelete = async (post) => {
-    const hasConfirmed = confirm(
-      "Are you sure you want to delete this prompt?"
-    );
+  const handleTestClick = (index)=>{
+    setCurrentTest(tests[index]);
+    // openModal();
+    setModalIsOpen(!modalIsOpen)
+  } 
 
-    if (hasConfirmed) {
-      try {
-        await fetch(`/api/prompt/${post._id.toString()}`, {
-          method: "DELETE",
-        });
+  if (status === 'loading' || loading) {
+    return <div>Loading...</div>;
+  }
 
-        const filteredPosts = myPosts.filter((item) => item._id !== post._id);
-
-        setMyPosts(filteredPosts);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
-    <Profile
-      name='My'
-      desc='Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination'
-      data={myPosts}
-      handleEdit={handleEdit}
-      handleDelete={handleDelete}
-    />
+    <>
+
+      <UserProfileDetails user={userDetail} totalQuizGiven={tests?.length}/>
+
+      <div className='flex flex-col items-center justify-center w-full'>
+        <h2 className="text-2xl font-semibold mb-4">Quiz Taken By You</h2>
+          <hr className="w-full max-w-3xl mb-4 border-gray-400" />
+        {tests.length > 0 ? (
+          tests.map((test,index) => (
+            <div key={test._id} onClick={()=>handleTestClick(index)} className="bg-white rounded-xl shadow-md overflow-hidden w-full my-4 transform transition-transform duration-300 hover:scale-105 hover:cursor-pointer">
+              <QuizListCard
+                title={test.quizId.title}
+                duration={test.quizId.duration}
+                totalScore={test.score}
+                isProfilePage
+              />
+            </div>
+          ))
+        ) : (
+          <p>No tests found</p>
+        )}
+      </div>
+
+      {/* <CustomModal isOpen={modalIsOpen} onRequestClose={closeModal} currentTestDetails={currentTest} /> */}
+
+      <MyModal isOpen={modalIsOpen} onClose={closeModal} currentTestDetails={currentTest}/>
+
+    </>
   );
+  
 };
 
-export default MyProfile;
+export default Profile;
