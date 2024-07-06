@@ -1,5 +1,4 @@
 import { Schema, model, models } from 'mongoose';
-// import QuizQuestionSchema from './quizQuestion';
 
 const QuizSchema = new Schema({
   hostId: {
@@ -17,7 +16,7 @@ const QuizSchema = new Schema({
   },
   duration: {
     type: Number,
-    required: [true, 'Duration is required!'], // Duration in minutes
+    required: [true, 'Duration is required!'], 
   },
   totalQuestion: {
     type: Number,
@@ -49,18 +48,15 @@ const QuizSchema = new Schema({
   },
   totalScore: {
     type: Number,
-    // required: [true, 'Total score is required!']
     default: 0
   }
 }, { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } });
 
-// Ensure indexes are created
-QuizSchema.index({ _id: 1 });
-QuizSchema.index({ createdAt: 1 });
-QuizSchema.index({ updatedAt: 1 });
-QuizSchema.index({ startAt: 1 });
+// QuizSchema.index({ _id: 1 });
+// QuizSchema.index({ createdAt: 1 });
+// QuizSchema.index({ updatedAt: 1 });
+// QuizSchema.index({ startAt: 1 });
 
 const Quiz = models.Quiz || model("Quiz", QuizSchema);
-// const Quiz = model("Quiz", QuizSchema);
 
 export default Quiz;
