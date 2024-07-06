@@ -1,6 +1,6 @@
 // components/CustomModal.js
 import React from "react";
-import MyGaugeChart from "./MyGaugeChart";
+// import MyGaugeChart from "./MyGaugeChart";
 
 const MyModal = ({ isOpen, onClose, currentTestDetails }) => {
   const { quizId, correctAnswerArray, incorrectAnswerArray, unAnsweredArray, createdAt, score } =
@@ -48,7 +48,7 @@ const MyModal = ({ isOpen, onClose, currentTestDetails }) => {
         </h2>
 
         {/* GaugeChart */}
-        <MyGaugeChart correct={correctAnswerArray?.length} incorrect={incorrectAnswerArray?.length} unanswered={unAnsweredArray?.length} />
+        {/* <MyGaugeChart correct={correctAnswerArray?.length} incorrect={incorrectAnswerArray?.length} unanswered={unAnsweredArray?.length} /> */}
 
         {/* Modal Rest Body */}
         <div className="bg-white  rounded-lg p-6 max-w-md mx-auto my-4 mb-2">
