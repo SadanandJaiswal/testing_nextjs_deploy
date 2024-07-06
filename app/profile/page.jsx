@@ -6,9 +6,9 @@ import { useSession } from 'next-auth/react'; // Adjust this based on your auth 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import QuizListCard from '@components/QuizListCard';
-import CustomModal from '@components/CustomModal';
+// import CustomModal from '@components/CustomModal';
 import MyModal from '@components/MyModal';
-import MyGaugeChart from '@components/MyGaugeChart';
+// import MyGaugeChart from '@components/MyGaugeChart';
 import UserProfileDetails from '@components/UserProfileDetails';
 
 const Profile = () => {
