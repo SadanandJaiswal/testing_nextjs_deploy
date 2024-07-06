@@ -3,9 +3,9 @@ import Feed from "@components/Feed";
 import Form from "@components/Form";
 import Profile from "@components/Profile";
 import PromptCard from "@components/PromptCard";
-import CustomModal from "@components/CustomModal";
+// import CustomModal from "@components/CustomModal";
 // import MyGaugeChart from "@components/MyGaugeChart";
-import MyModal from "@components/MyModal";
+// import MyModal from "@components/MyModal";
 
 const Home = () => (
   <>
