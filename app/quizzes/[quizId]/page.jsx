@@ -6,7 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from 'next/navigation'
-import QuizStater from "@components/quizStater";
+import QuizStater from "@components/QuizStater";
 // import QuizStater from "../../../components/quizStater";
 import QuizQuestions from "@components/QuizQuestions";
 // import QuizQuestions from "../../../components/QuizQuestions";
