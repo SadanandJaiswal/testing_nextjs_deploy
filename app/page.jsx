@@ -6,6 +6,12 @@ import PromptCard from "@components/PromptCard";
 // import CustomModal from "@components/CustomModal";
 // import MyGaugeChart from "@components/MyGaugeChart";
 import MyModal from "@components/MyModal";
+import QuestionMaker from "@components/QuestionMaker";
+import QuizList from "@components/QuizList";
+import QuizListCard from "@components/QuizListCard";
+import QuizStater from "@components/QuizStater";
+import QuizQuestions from "@components/QuizQuestions";
+import UserProfileDetails from "@components/UserProfileDetails";
 
 const Home = () => (
   <>
@@ -20,7 +26,7 @@ const Home = () => (
         </p>
         <div className='mt-8'>
           <Link href='/quizzes' className='px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition duration-300'>  
-              Get Started | Checking Components
+              Get Started | Checking Components More
           </Link>
         </div>
         {/* <MyGaugeChart correct={6} incorrect={2} unanswered={2}/> */}
